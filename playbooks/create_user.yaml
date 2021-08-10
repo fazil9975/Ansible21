@@ -1,0 +1,27 @@
+- - -
+- name: Creating user using ansible
+  hosts: all 
+  become: yes
+  tasks:
+    - name: Adding user to a system
+      user:
+        name: john
+        append: yes
+        groups: wheel
+        comment: "Test user"
+        generate_ssh_key: yes
+        home: "/home/johny"
+        password: $6$/1OFlW9yH1KHHiOm$pn2SfNgbF/rbblahjseab/p1Xb6Z29UZik.BUilZ.TLnp9yvl2HViB3fs8XdVteboeioss7o2A4g1IYxw.TFJ/
+        shell: "/usr/bin/sh"
+         uid: 2000
+- - -
+- name: Deleteing user using ansible
+  hosts: all 
+  become: yes
+  tasks:
+    - name: Removing user to a system
+      user:
+        name: john
+        force: yes
+        state: absent
+        remove: yes

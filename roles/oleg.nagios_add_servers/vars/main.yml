@@ -1,0 +1,9 @@
+---
+# vars file for roles/oleg.nagios_add_servers
+target_server_list:
+  - server_name: "WEB001"
+    server_ip: "192.168.1.217"
+  - server_name: "WEB002"
+    server_ip: "192.168.1.218"
+  - server_name: "WEB003"
+    server_ip: "192.168.1.219"
