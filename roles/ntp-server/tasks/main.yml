@@ -1,0 +1,29 @@
+---
+# tasks file for ntp-server
+- name: Installing chrony package
+  yum:
+     name: chrony
+     state: latest
+
+- name: Modify configuration allow network
+  ansible.builtin.linefile:
+  path: /etc/chrony.conf
+  regexp: '^#allow 10.0.0.0/24'
+  line: 'allow 192.168.0.0/24'
+- name: Uncomment stratus 10
+  ansible.builtin.linefile:
+  path: /etc/chrony.conf
+  regexp: '^#local stratum 10'
+  line: 'local stratum 10'
+
+- name: Start and anable chrony
+  service:
+      name: chronyd
+      state: started
+      enabled: yes     
+
+- name: Add NTP service to firewall
+  firewalld:
+    service: ntp
+    state: enabled
+    immediate: yes
